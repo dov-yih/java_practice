@@ -1,9 +1,5 @@
 package T6;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-
 /**
  * Created by yidafu on 2017/5/18.
  */
