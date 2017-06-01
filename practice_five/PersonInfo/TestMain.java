@@ -10,10 +10,10 @@ public class TestMain {
     public static void main(String[] args) {
         FileWriter fw  = null;
         BufferedWriter bw = null;
-//        char[] line = new char[10];
-        int length = 0;
+        BufferedReader fb = null;
+        FileReader fr = null;
+        PrintWriter pw = null;
         String line = null;
-        InputStreamReader input =  new InputStreamReader(System.in);
         try{
              fw = new FileWriter("info.txt");
              bw  = new BufferedWriter(fw);
@@ -28,15 +28,17 @@ public class TestMain {
                  bw.newLine();
                  bw.flush();
              }
-             FileReader fr = new FileReader("info.txt");
-            BufferedReader fb = new BufferedReader(fr);
-             PrintWriter pw = new PrintWriter(System.out);
+             fr = new FileReader("info.txt");
+             fb = new BufferedReader(fr);
+             pw = new PrintWriter(System.out);
              String get = "";
-             while((get = fb.readLine()) != null) {
-                 pw.print(get);
+             while(true) {
+                 get = fb.readLine();
+                 if(get == null)
+                     break;
+                 pw.println(get);
+                 pw.flush();
              }
-             fb.close();
-             pw.close();
         }catch (IOException e) {
             e.printStackTrace();
         }finally{
@@ -46,8 +48,15 @@ public class TestMain {
             }catch (IOException e) {
                 e.printStackTrace();
             }
+            try{
+                if(fb != null)
+                    fb.close();
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+            pw.close();
+
         }
 
     }
 }
-//                  hdupublic.163.com
